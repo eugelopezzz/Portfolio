@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio Eugenia López — Diseñadora Multimedial</title>
+<title>Eugenia López Ponzo — Diseñadora Multimedial · Motion Graphics</title>
+<meta name="description" content="Portfolio de Eugenia López Ponzo, diseñadora multimedial en Buenos Aires. Motion graphics, producción de video, modelado 3D y contenido con IA para marcas.">
+<meta name="theme-color" content="#08070F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Eugenia López Ponzo — Diseñadora Multimedial">
+<meta property="og:description" content="Motion graphics, video, modelado 3D y contenido con IA. Portfolio de proyectos para marcas.">
+<meta property="og:url" content="https://eugelopezzz.github.io/Portfolio/">
+<meta property="og:locale" content="es_AR">
+<!-- Para que al compartir el link se vea una imagen: subí una imagen de 1200x630 y agregá
+<meta property="og:image" content="https://eugelopezzz.github.io/Portfolio/og.jpg"> -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
@@ -706,21 +715,308 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
   .pstat-num{font-size:1.75rem;}
   .cat-tab{font-size:.55rem;padding:.4rem .7rem;}
 }
+
+/* ===================== MEJORAS ===================== */
+/* Miniaturas: la imagen va por encima del degradado/emoji de fallback */
+.proj-thumb img{position:absolute;inset:0;z-index:2;}
+.proj-thumb .proj-hover-overlay{z-index:3;}
+.proj-thumb .proj-play-btn{z-index:4;}
+.proj-card:focus-visible,.cat-tab:focus-visible,.modal-close:focus-visible,.btn-grad:focus-visible,.btn-outline:focus-visible,.nav-links a:focus-visible{
+  outline:2px solid var(--v3);outline-offset:3px;
+}
+/* En pantallas táctiles no hay hover: mostrar siempre el botón play */
+@media(hover:none){
+  .proj-play-btn{opacity:1;}
+  .proj-hover-overlay{display:none;}
+}
+/* Portada: frase principal + línea de edición integrada */
+.portada-tagline{
+  font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:500;letter-spacing:-.01em;
+  margin:-.5rem auto 1rem;color:var(--white);
+}
+.portada-actions{margin-bottom:2.5rem;}
+.portada-sub{max-width:520px;}
+.nle-bar.nle-inline{
+  position:relative;bottom:auto;left:auto;right:auto;
+  max-width:520px;margin:0 auto 3rem;text-align:left;
+}
+.pcard{display:block;color:inherit;text-decoration:none;}
+.pcard-img{background:#130920;}
+.pcard-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+/* Tira de marcas */
+.clients{
+  padding:2.5rem 3rem;background:var(--dark);text-align:center;
+  border-top:1px solid rgba(192,132,252,.08);border-bottom:1px solid rgba(192,132,252,.08);
+}
+.clients-label{
+  font-family:'Space Mono',monospace;font-size:.62rem;color:var(--muted);
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:1.25rem;
+}
+.clients-list{
+  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:.75rem 2.5rem;max-width:1000px;margin:0 auto;
+}
+.clients-list li{
+  font-size:1.05rem;font-weight:700;letter-spacing:-.01em;
+  color:rgba(245,240,255,.55);transition:color .2s;
+}
+.clients-list li:hover{color:var(--white);}
+@media(max-width:640px){
+  .clients{padding:2rem 1.25rem;}
+  .clients-list{gap:.6rem 1.5rem;}
+  .clients-list li{font-size:.9rem;}
+  /* menos blur animado = más fluido en celulares */
+  .pb1,.pb2,.pb3,.a-blob,.svc-blob,.c-blob{animation:none;filter:blur(50px);}
+  .pb3{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  html{scroll-behavior:auto;}
+}
+/* Logos de marcas: monocromo claro, sobre fondo oscuro */
+.clients-list{align-items:center;gap:1rem 3rem;}
+.clients-list li{display:flex;align-items:center;min-height:32px;}
+.client-logo{height:30px;width:auto;max-width:130px;display:block;opacity:.55;transition:opacity .2s;}
+img.client-logo{filter:brightness(0) invert(1);}
+.client-svg{width:30px;fill:currentColor;color:var(--white);}
+.clients-list li:hover .client-logo{opacity:1;}
+.client-name{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;color:rgba(245,240,255,.55);}
+@media(max-width:640px){.clients-list{gap:1rem 2rem;}.client-logo{height:24px;max-width:100px;}.client-svg{width:24px;}}
+
+.modal-video-info{flex-wrap:wrap;}
+.modal-yt-link{margin-left:auto;display:inline-flex;align-items:center;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--v3);text-decoration:none;padding:.45rem .9rem;border:1px solid rgba(192,132,252,.3);border-radius:2rem;transition:background .2s,border-color .2s;}
+.modal-yt-link:hover{background:rgba(192,132,252,.12);border-color:var(--v3);}
+
+/* Herramientas: chips con descripción */
+.tool-chip-wide{display:inline-flex;flex-direction:column;align-items:flex-start;gap:.2rem;border-radius:14px;padding:.5rem .9rem;}
+.tool-chip-wide b{font-weight:700;letter-spacing:.05em;}
+.tool-chip-wide small{font-size:.6rem;letter-spacing:.03em;opacity:.72;color:var(--white);}
+.chip-other{background:rgba(245,240,255,.06);border:1px solid rgba(245,240,255,.12);color:rgba(245,240,255,.7);}
+/* ===================== ANIMACIONES ===================== */
+@keyframes rise{from{opacity:0;transform:translateY(70px) skewY(4deg);filter:blur(14px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeOnly{from{opacity:0}to{opacity:1}}
+@keyframes shim{to{background-position:200% 0}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes panelIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes cardPop{from{opacity:0;transform:translateY(26px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes wig{0%,100%{rotate:0deg}25%{rotate:-5deg}75%{rotate:5deg}}
+@keyframes spark{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0);opacity:0}}
+@keyframes ticker{to{transform:translateX(-25%)}}
+
+/* barra de progreso + brillo que sigue al cursor */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:300;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--v2),var(--p1),var(--c1));}
+.cursor-glow{position:fixed;left:0;top:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;pointer-events:none;z-index:150;
+  opacity:0;transition:opacity .4s,scale .35s;will-change:transform;mix-blend-mode:screen;
+  background:radial-gradient(circle,rgba(192,132,252,.20),rgba(232,121,160,.10) 40%,transparent 68%);}
+.cursor-glow.on{opacity:1;}
+.cursor-glow.big{scale:1.5;}
+@media(pointer:coarse){.cursor-glow{display:none;}}
+
+/* entrada de la portada */
+.portada-title .line1{animation:rise 1s cubic-bezier(.2,.8,.2,1) .15s both;}
+.portada-title .line2{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) .3s both,shimmer 5s linear infinite;}
+.portada-inner>*:not(h1){animation:pIn .8s cubic-bezier(.2,.8,.2,1) both;}
+.portada-inner>:nth-child(1){animation-delay:.05s;}
+.portada-inner>:nth-child(3){animation-delay:.55s;}
+.portada-inner>:nth-child(4){animation-delay:.7s;}
+.portada-inner>:nth-child(5){animation-delay:.85s;}
+.portada-inner>:nth-child(6){animation-delay:1s;}
+.portada-inner>:nth-child(7){animation-delay:1.15s;}
+.port-cards{animation:fadeOnly 1s .9s both;}
+.pcard{animation:bob 6s ease-in-out infinite;}
+.pcard:nth-child(2){animation-delay:-2s;}
+.pcard:nth-child(3){animation-delay:-4s;}
+
+/* aparición al hacer scroll */
+.anim .reveal{opacity:0;transform:translateY(30px);
+  transition:opacity .8s cubic-bezier(.2,.8,.2,1) var(--d,0ms),transform .8s cubic-bezier(.2,.8,.2,1) var(--d,0ms)!important;}
+.anim .reveal.in{opacity:1;transform:none;}
+
+/* títulos con degradado en movimiento */
+.contact-big span,.works-title span,.about-heading span,.svc-heading span{
+  background-image:linear-gradient(90deg,var(--v3),var(--p1),var(--c2),var(--p1),var(--v3));
+  background-size:200% 100%;animation:shim 6s linear infinite;}
+
+/* menú: subrayado que crece */
+.nav-links a{position:relative;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;border-radius:2px;
+  background:linear-gradient(90deg,var(--v3),var(--p1));transition:width .3s cubic-bezier(.2,.8,.2,1);}
+.nav-links a:hover::after{width:100%;}
+
+/* botones: brillo que cruza + imán */
+.btn-grad{position:relative;overflow:hidden;}
+.btn-grad::after{content:'';position:absolute;top:0;bottom:0;left:-80%;width:50%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .6s;}
+.btn-grad:hover::after{left:130%;}
+.btn-grad,.btn-outline,.nav-cta{transition-property:transform,box-shadow,translate,background,border-color,opacity;transition-duration:.25s;}
+
+/* pestañas y paneles */
+.cat-tab:hover{animation:wig .5s;}
+.cat-panel.active{animation:panelIn .5s cubic-bezier(.2,.8,.2,1);}
+.cat-panel.active .proj-card{animation:cardPop .55s cubic-bezier(.2,.9,.3,1.2) backwards;animation-delay:calc(var(--k,0)*55ms);}
+.svc-item:hover .svc-arrow{transform:rotate(-45deg);}
+
+/* tarjetas de proyecto: brillo que sigue al mouse */
+.proj-card::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.16),transparent 45%);}
+.proj-card:hover::after{opacity:1;}
+
+/* línea de edición viva */
+.nle-clip{transition:filter .15s,box-shadow .15s;}
+.nle-clip.live{filter:brightness(1.4);box-shadow:0 0 12px rgba(192,132,252,.55);}
+
+/* modal con rebote */
+.modal-box{transform:translateY(30px) scale(.94);transition:transform .45s cubic-bezier(.2,1.1,.3,1);}
+.modal-overlay.open .modal-box{transform:none;}
+
+/* banda de texto gigante */
+.band{overflow:hidden;padding:1.6rem 0;background:var(--dark);
+  border-top:1px solid rgba(192,132,252,.08);border-bottom:1px solid rgba(192,132,252,.08);}
+.band-track{display:flex;align-items:center;width:max-content;white-space:nowrap;will-change:transform;}
+.band-track span{font-size:clamp(3rem,9vw,7.5rem);font-weight:700;letter-spacing:-.04em;line-height:1;text-transform:uppercase;padding:0 .3em;}
+.band-track span.o{color:transparent;-webkit-text-stroke:1.5px rgba(192,132,252,.55);}
+.band-track span.f{background:linear-gradient(90deg,var(--v3),var(--p1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.band-track i{font-style:normal;font-size:clamp(1.5rem,4vw,3rem);color:var(--p1);}
+
+/* tira de marcas en movimiento continuo */
+.clients{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.clients-list{flex-wrap:nowrap;justify-content:flex-start;width:max-content;max-width:none;margin:0;gap:0;animation:ticker 34s linear infinite;}
+.clients-list li{flex:none;margin-right:3.5rem;}
+.clients:hover .clients-list{animation-play-state:paused;}
+.spark{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:900;transform:translate(-50%,-50%);
+  animation:spark .7s cubic-bezier(.2,.8,.2,1) forwards;}
+@media(max-width:640px){.clients-list{gap:0;}.clients-list li{margin-right:2.2rem;}}
+@media(prefers-reduced-motion:reduce){
+  .clients-list{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:1rem 2rem;}
+  .clients-list li{margin-right:0;}
+  .clients-list li[aria-hidden]{display:none;}
+  .band-track{flex-wrap:wrap;justify-content:center;width:auto;}
+}
+
+/* ===================== PORTADA NUEVA + TECLADO ===================== */
+@keyframes chIn{0%{transform:translateY(118%) rotate(9deg) scaleY(1.3);opacity:0}55%{opacity:1}100%{transform:none;opacity:1}}
+@keyframes ringIn{from{opacity:0;transform:scale(.4) rotate(-120deg)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+#portada.cover-on{display:block;text-align:left;min-height:100vh;padding:6rem 3rem 2.6rem;}
+.cv{position:relative;z-index:2;max-width:1400px;margin:0 auto;min-height:calc(100vh - 9rem);
+  display:flex;flex-direction:column;justify-content:center;gap:1rem;}
+.cv-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;animation:pIn .8s cubic-bezier(.2,.8,.2,1) .05s both;}
+.cv-label{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--v3);
+  display:flex;align-items:center;gap:.7rem;}
+.cv-label::before{content:'';width:26px;height:1px;background:var(--v3);}
+.cv-top .portada-badge{margin:0;}
+
+/* título gigante, letra por letra */
+.cv-title{font-size:clamp(3.1rem,min(13.2vw,21.5vh),12rem);line-height:.9;font-weight:700;margin:.4rem 0 .2rem;text-transform:uppercase;
+  translate:calc(var(--tx,0)*-14px) calc(var(--ty,0)*-8px + var(--sy,0px));transition:translate .35s cubic-bezier(.2,.8,.2,1);}
+.cv-line{display:block;white-space:nowrap;visibility:hidden;}
+.cv-line.built{visibility:visible;}
+.ch{display:inline-block;clip-path:inset(-.15em -.35em 0 -.35em);cursor:default;}
+.ci{display:inline-block;letter-spacing:-.025em;animation:chIn .95s cubic-bezier(.2,1.1,.3,1) both;
+  animation-delay:calc(.3s + var(--i)*.06s);transition:translate .25s cubic-bezier(.2,1.4,.4,1),rotate .25s;}
+.l2 .ci{animation-delay:calc(.75s + var(--i)*.06s);}
+.l1 .ci{color:var(--white);}
+.l2 .ci{color:transparent;-webkit-text-stroke:clamp(1.5px,.17vw,3px) rgba(245,240,255,.9);}
+.ch:hover .ci{translate:0 -5%;rotate:-3deg;}
+.l1 .ch:hover .ci,.l2 .ch:hover .ci,.l2 .ci.flash{
+  color:transparent;-webkit-text-stroke:0;
+  background:linear-gradient(135deg,var(--v3),var(--p1),var(--c1));-webkit-background-clip:text;background-clip:text;}
+
+.cv-mid{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-top:.8rem;}
+.cv-mid>*{animation:pIn .8s cubic-bezier(.2,.8,.2,1) 1.5s both;}
+.cv-sub{font-family:'Space Mono',monospace;font-size:.8rem;line-height:1.85;color:var(--muted);max-width:480px;}
+.cv-sub strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:500;color:var(--white);letter-spacing:-.01em;margin-bottom:.4rem;}
+.cv-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+
+.cv-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-top:.4rem;padding-top:1.2rem;
+  border-top:1px solid rgba(192,132,252,.12);animation:pIn .8s cubic-bezier(.2,.8,.2,1) 1.75s both;}
+.cv-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(100%,27rem);}
+.cv-stats .pstat{text-align:left;padding:0 1.4rem;}
+.cv-stats .pstat:first-child{padding-left:0;}
+.cv-stats .pstat+.pstat{border-left:1px solid rgba(192,132,252,.16);}
+.cv-stats .pstat-num{line-height:1;white-space:nowrap;}
+.cv-stats .pstat-lbl{margin-top:.5rem;white-space:nowrap;letter-spacing:.1em;}
+.cv-stats .pstat-num{font-size:2.4rem;}
+.cv .nle-bar.nle-inline{margin:0;max-width:none;width:min(440px,100%);}
+.cv-hint{position:absolute;left:0;bottom:-1.9rem;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:rgba(245,240,255,.3);text-transform:uppercase;
+  animation:pIn .8s cubic-bezier(.2,.8,.2,1) 2s both;}
+.cv-hint b{display:inline-grid;place-items:center;min-width:1.5em;height:1.5em;margin:0 .15em;border-radius:5px;font-weight:400;
+  border:1px solid rgba(192,132,252,.25);color:var(--v3);background:rgba(192,132,252,.07);}
+@media(hover:none){.cv-hint{display:none;}}
+
+/* sello giratorio */
+.cv-ring{position:absolute;z-index:1;right:clamp(1rem,6vw,5.5rem);top:clamp(9rem,24vh,15rem);width:clamp(120px,15vw,215px);
+  animation:ringIn 1.3s cubic-bezier(.2,.9,.3,1) 1.1s both;}
+.cv-ring svg{width:100%;height:auto;display:block;animation:spin 22s linear infinite;overflow:visible;}
+.cv-ring text{font-family:'Space Mono',monospace;font-size:13.5px;letter-spacing:.14em;fill:var(--white);opacity:.8;}
+.cv-ring .ring-disc{fill:rgba(192,132,252,.14);stroke:rgba(192,132,252,.5);stroke-width:1;}
+.cv-ring .ring-play{fill:var(--p1);}
+
+/* ---- menú: botonera estilo teclado ---- */
+.keys{display:flex;gap:.55rem;list-style:none;margin-left:auto;align-items:center;}
+.key,.nav-mobile-menu a{
+  display:flex;align-items:center;gap:.55rem;padding:.5rem .85rem .5rem .55rem;border-radius:10px;text-decoration:none;
+  font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--white);
+  background:linear-gradient(180deg,#2d2746,#1c1832);border:1px solid rgba(192,132,252,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 4px 0 #0b0916,0 7px 14px rgba(0,0,0,.45);
+  transform:translateY(0);transition:transform .09s,box-shadow .09s,background .25s,color .25s;}
+.key kbd,.nav-mobile-menu a kbd{display:grid;place-items:center;width:22px;height:22px;border-radius:6px;font:inherit;font-size:.68rem;
+  color:var(--v3);background:rgba(0,0,0,.4);border:1px solid rgba(192,132,252,.3);box-shadow:inset 0 -2px 0 rgba(0,0,0,.35);}
+.key:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 0 #0b0916,0 10px 18px rgba(0,0,0,.5);}
+.key:active,.key.pressed,.nav-mobile-menu a:active{transform:translateY(4px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 #0b0916,0 2px 5px rgba(0,0,0,.5);}
+.key.on{background:linear-gradient(135deg,var(--v2),var(--p1));color:#fff;border-color:rgba(255,255,255,.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 0 #5a2f6e,0 7px 20px rgba(232,121,160,.4);}
+.key.on kbd{color:#fff;background:rgba(0,0,0,.25);border-color:rgba(255,255,255,.35);}
+.key.on:active,.key.on.pressed{box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 0 0 #5a2f6e,0 2px 8px rgba(232,121,160,.4);}
+.nav-mobile-menu{gap:1.1rem;display:flex;visibility:hidden;transition:opacity .3s,visibility .3s;}
+.nav-mobile-menu.open{visibility:visible;}
+@media(min-width:1025px){.nav-mobile-menu{display:none;}}
+.nav-mobile-menu a{font-size:1rem;padding:.85rem 1.4rem .85rem .8rem;min-width:220px;-webkit-text-fill-color:var(--white);
+  background:linear-gradient(180deg,#2d2746,#1c1832);-webkit-background-clip:border-box;background-clip:border-box;}
+.nav-mobile-menu a kbd{width:28px;height:28px;font-size:.8rem;}
+
+@media(max-width:1024px){
+  .cv-hint{display:none;}
+  .keys{display:none;}
+  .cv-ring{top:7.5rem;}
+}
+@media(max-width:640px){
+  #portada.cover-on{padding:5.2rem 1.25rem 2rem;}
+  .cv{min-height:calc(100vh - 7rem);gap:1.1rem;}
+  .cv-title{font-size:clamp(2.8rem,19vw,6rem);}
+  .cv-ring{display:none;}
+  .cv-mid{flex-direction:column;align-items:flex-start;}
+  .cv-actions{width:100%;}
+  .cv-actions .btn-grad,.cv-actions .btn-outline{flex:1 1 100%;width:100%;justify-content:center;}
+  .cv-foot{flex-direction:column;align-items:flex-start;}
+  .cv-stats{width:100%;}
+  .cv-stats .pstat{padding:0 .9rem;}
+  .cv-stats .pstat:first-child{padding-left:0;}
+  .cv-stats .pstat-lbl{font-size:.58rem;letter-spacing:.07em;}
+  .cv-stats .pstat-num{font-size:1.9rem;}
+}
 </style>
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim')</script>
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
 <nav>
   <div class="nav-logo">EUGENIA · LÓPEZ · PONZO</div>
-  <ul class="nav-links">
-    <li><a href="#portada">Inicio</a></li>
-    <li><a href="#sobre">Sobre mí</a></li>
-    <li><a href="#trabajos">Trabajos</a></li>
-    <li><a href="#ia">IA</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+  <ul class="keys" id="keys" aria-label="Secciones">
+    <li><a class="key" href="#portada" data-key="i"><kbd>I</kbd><span>Inicio</span></a></li>
+    <li><a class="key" href="#sobre" data-key="m"><kbd>M</kbd><span>Sobre mí</span></a></li>
+    <li><a class="key" href="#trabajos" data-key="t"><kbd>T</kbd><span>Trabajos</span></a></li>
+    <li><a class="key" href="#ia" data-key="a"><kbd>A</kbd><span>IA</span></a></li>
+    <li><a class="key" href="#servicios" data-key="s"><kbd>S</kbd><span>Servicios</span></a></li>
+    <li><a class="key" href="#contacto" data-key="c"><kbd>C</kbd><span>Contacto</span></a></li>
   </ul>
-  <a href="#contacto" class="nav-cta" style="text-decoration:none;">Contacto</a>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
@@ -728,68 +1024,72 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
 
 <!-- MOBILE MENU -->
 <div class="nav-mobile-menu" id="mobileMenu">
-  <a href="#portada"  onclick="toggleMenu()">Inicio</a>
-  <a href="#sobre"    onclick="toggleMenu()">Sobre mí</a>
-  <a href="#trabajos" onclick="toggleMenu()">Trabajos</a>
-  <a href="#ia"       onclick="toggleMenu()">IA</a>
-  <a href="#servicios"onclick="toggleMenu()">Servicios</a>
-  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  <a href="#portada" onclick="toggleMenu()"><kbd>I</kbd><span>Inicio</span></a>
+  <a href="#sobre" onclick="toggleMenu()"><kbd>M</kbd><span>Sobre mí</span></a>
+  <a href="#trabajos" onclick="toggleMenu()"><kbd>T</kbd><span>Trabajos</span></a>
+  <a href="#ia" onclick="toggleMenu()"><kbd>A</kbd><span>IA</span></a>
+  <a href="#servicios" onclick="toggleMenu()"><kbd>S</kbd><span>Servicios</span></a>
+  <a href="#contacto" onclick="toggleMenu()"><kbd>C</kbd><span>Contacto</span></a>
 </div>
 
 <!-- PORTADA -->
-<section id="portada">
+<section id="portada" class="cover-on">
   <div class="pb1"></div><div class="pb2"></div><div class="pb3"></div>
   <div class="dots-overlay"></div>
-  <div class="port-cards">
-    <div class="pcard">
-      <div class="pcard-img" style="background:#130920;">
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(192,132,252,.55),transparent 65%);"></div>
-        <span style="position:relative;">🎬</span>
-      </div>
-      <div class="pcard-body"><div class="pcard-tag">Motion</div><div class="pcard-name">Identidad animada</div></div>
-    </div>
-    <div class="pcard">
-      <div class="pcard-img" style="background:#1a0914;">
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(232,121,160,.55),transparent 65%);"></div>
-        <span style="position:relative;">🧊</span>
-      </div>
-      <div class="pcard-body"><div class="pcard-tag">3D</div><div class="pcard-name">Escultura digital</div></div>
-    </div>
-    <div class="pcard">
-      <div class="pcard-img" style="background:#1a1209;">
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(249,112,96,.5),transparent 65%);"></div>
-        <span style="position:relative;">📹</span>
-      </div>
-      <div class="pcard-body"><div class="pcard-tag">Video</div><div class="pcard-name">Producción audiovisual</div></div>
-    </div>
-  </div>
-  <div class="portada-inner">
-    <div class="portada-badge">● Disponible para proyectos</div>
-    <h1 class="portada-title">
-      <span class="line1">Diseño</span>
-      <span class="line2">Multimedial&nbsp;</span>
+
+  <!-- sello giratorio
+  <div class="cv-ring" aria-hidden="true"> 
+    <svg viewBox="0 0 200 200">
+      <defs><path id="ringPath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+      <text><textPath href="#ringPath" textLength="484" lengthAdjust="spacing">MOTION ✦ 3D ✦ IA ✦ VIDEO ✦ MOTION ✦ 3D ✦ IA ✦ VIDEO ✦</textPath></text>
+      <circle cx="100" cy="100" r="34" class="ring-disc"/>
+      <path d="M92 84 L92 116 L120 100 Z" class="ring-play"/>
+    </svg> 
+  </div> -->
+
+  <div class="cv">
+     <!--<div class="cv-top">
+      <span class="cv-label">Eugenia López Ponzo · Diseñadora multimedial</span>
+      <span class="portada-badge">Disponible para proyectos</span>
+    </div> -->
+
+    <h1 class="cv-title" aria-label="Motion Designer">
+      <span class="cv-line l1" data-text="MOTION">MOTION</span>
+      <span class="cv-line l2" data-text="DESIGNER">DESIGNER</span>
     </h1>
-    <p class="portada-sub">Motion design · Video · Modelado 3D · Contenido con IA.<br>
-    Piezas personalizadas que impactan y son&nbsp; memorables.</p>
-    <div class="portada-actions">
-      <a href="#trabajos" class="btn-grad">Ver trabajos →</a>
-      <a href="#contacto" class="btn-outline">Hablemos</a>
-    </div>
-    <div class="portada-stats">
-      <div class="pstat"><div class="pstat-num">+30</div><div class="pstat-lbl">Proyectos</div></div>
-      <div class="pstat"><div class="pstat-num">+5</div><div class="pstat-lbl">&nbsp;Años</div></div>
-      <div class="pstat"><div class="pstat-num">4</div><div class="pstat-lbl">Disciplinas</div></div>
-    </div>
-  </div>
-</section>
+    <script>
+    (function(){
+      document.querySelectorAll('.cv-line').forEach(function(line){
+        var txt=line.getAttribute('data-text')||line.textContent.trim(); line.textContent=''; var n=0;
+        txt.split('').forEach(function(c){
+          var w=document.createElement('span'); w.className='ch'; w.setAttribute('aria-hidden','true');
+          var i=document.createElement('span'); i.className='ci'; i.textContent=c; i.style.setProperty('--i',n++);
+          w.appendChild(i); line.appendChild(w);
+        });
+        line.classList.add('built');
+      });
+    })();
+    </script>
+    <noscript><style>.cv-line{visibility:visible!important}</style></noscript>
 
-<!-- HERO -->
-<section id="inicio">
-  <div class="h-blob1"></div><div class="h-blob2"></div>
-  <div class="h-bgtext">EUGENIA</div>
+    <div class="cv-mid">
+      <p class="cv-sub"><strong>Motion, identidad y narrativa&nbsp;visual.</strong><br>
+        Motion design · Video · Modelado 3D · Contenido con IA.<br>
+        Piezas personalizadas que impactan y son&nbsp;memorables.</p>
+      <div class="cv-actions">
+        <a href="#trabajos" class="btn-grad">Ver trabajos →</a>
+        <a href="#contacto" class="btn-outline">Hablemos</a>
+      </div>
+    </div>
 
-  <!-- NLE Timeline decorativa -->
-  <div class="nle-bar">
+    <div class="cv-foot">
+      <div class="cv-stats">
+        <div class="pstat"><div class="pstat-num">+150</div><div class="pstat-lbl">Proyectos</div></div>
+        <div class="pstat"><div class="pstat-num">+5</div><div class="pstat-lbl">Años</div></div>
+        <div class="pstat"><div class="pstat-num">4</div><div class="pstat-lbl">Disciplinas</div></div>
+      </div>
+      <!-- NLE Timeline decorativa -->
+  <div class="nle-bar nle-inline" aria-hidden="true">
     <div class="nle-timecode">00:00:12:04</div>
     <div class="nle-tracks">
       <div class="nle-track">
@@ -805,31 +1105,25 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
     </div>
     <div class="nle-playhead"></div>
   </div>
-  <div class="hero-fcards">
-    <!--<div class="hfc">
-       <div class="hfc-img" style="background:#130920;">
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(192,132,252,.55),transparent 65%);"></div>
-        <span style="position:relative;">🎬</span>
-      </div>
-      <div class="hfc-body"><div class="hfc-tag">Motion</div><div class="hfc-name">Identidad animada</div></div>
-    </div> -->
-    <!--<div class="hfc">
-      <div class="hfc-img" style="background:#1a0914;">
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(232,121,160,.55),transparent 65%);"></div>
-        <span style="position:relative;">🧊</span>
-      </div>
-      <div class="hfc-body"><div class="hfc-tag">3D</div><div class="hfc-name">Escultura digital</div></div>
-    </div> -->
+    </div>
+    <div class="cv-hint">⌨ Probá navegar con el teclado: <b>I</b> <b>M</b> <b>T</b> <b>A</b> <b>S</b> <b>C</b></div>
   </div>
-  <div class="h-label">Diseñadora Multimedial · Buenos Aires</div>
-  <h1 class="h-title">Motion, identidad y <em>narrativa&nbsp; visual.</em></h1>
-  <div class="h-bottom"> 
-    <p class="h-sub">    <br>   <br>   </p>
-    <!--<div class="h-acts">
-      <a href="#trabajos" class="btn-grad">Ver trabajos →</a>
-      <a href="#contacto" class="btn-outline">Contacto</a>
-    </div> -->
-  </div>
+</section>
+
+
+<!-- MARCAS -->
+<section class="clients" aria-label="Marcas con las que trabajé">
+  <div class="clients-label">Marcas con las que trabajé</div>
+  <ul class="clients-list">
+    <li><img class="client-logo" src="logos/mccain.svg" alt="McCain" loading="lazy" onerror="logoFail(this)"></li>
+    <li><svg class="client-logo client-svg" role="img" aria-label="Red Hat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Red Hat</title><path d="M16.009 13.386c1.577 0 3.86-.326 3.86-2.202a1.765 1.765 0 0 0-.04-.431l-.94-4.08c-.216-.898-.406-1.305-1.982-2.093-1.223-.625-3.888-1.658-4.676-1.658-.733 0-.947.946-1.822.946-.842 0-1.467-.706-2.255-.706-.757 0-1.25.515-1.63 1.576 0 0-1.06 2.99-1.197 3.424a.81.81 0 0 0-.028.245c0 1.162 4.577 4.974 10.71 4.974m4.101-1.435c.218 1.032.218 1.14.218 1.277 0 1.765-1.984 2.745-4.593 2.745-5.895.004-11.06-3.451-11.06-5.734a2.326 2.326 0 0 1 .19-.925C2.746 9.415 0 9.794 0 12.217c0 3.969 9.405 8.861 16.851 8.861 5.71 0 7.149-2.582 7.149-4.62 0-1.605-1.387-3.425-3.887-4.512"/></svg></li>
+    <li><img class="client-logo" src="logos/warsteiner.svg" alt="Warsteiner" loading="lazy" onerror="logoFail(this)"></li>
+    <li><svg class="client-logo client-svg" role="img" aria-label="Shell" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Shell</title><path d="M12 .863C5.34.863 0 6.251 0 12.98c0 .996.038 1.374.246 2.33l3.662 2.71.57 4.515h6.102l.326.227c.377.262.705.375 1.082.375.352 0 .732-.101 1.024-.313l.39-.289h6.094l.563-4.515 3.695-2.71c.208-.956.246-1.334.246-2.33C24 6.252 18.661.863 12 .863zm.996 2.258c.9 0 1.778.224 2.512.649l-2.465 12.548 3.42-12.062c1.059.36 1.863.941 2.508 1.814l.025.034-4.902 10.615 5.572-9.713.033.03c.758.708 1.247 1.567 1.492 2.648l-6.195 7.666 6.436-6.5.01.021c.253.563.417 1.36.417 1.996 0 .509-.024.712-.164 1.25l-3.554 2.602-.467 3.71h-4.475l-.517.395c-.199.158-.482.266-.682.266-.199 0-.483-.108-.682-.266l-.517-.394H6.322l-.445-3.61-3.627-2.666c-.11-.436-.16-.83-.16-1.261 0-.72.159-1.49.426-2.053l.013-.024 6.45 6.551L2.75 9.621c.25-1.063.874-2.09 1.64-2.713l5.542 9.776L4.979 6.1c.555-.814 1.45-1.455 2.546-1.827l3.424 12.069L8.355 3.816l.055-.03c.814-.45 1.598-.657 2.457-.657.195 0 .286.004.528.03l.587 13.05.46-13.059c.224-.025.309-.029.554-.029z"/></svg></li>
+    <li><img class="client-logo" src="logos/tiarosa.svg" alt="Tía Rosa" loading="lazy" onerror="logoFail(this)"></li>
+    <li><img class="client-logo" src="logos/bimbo.svg" alt="Bimbo" loading="lazy" onerror="logoFail(this)"></li>
+    <li><img class="client-logo" src="logos/grolsch.svg" alt="Grolsch" loading="lazy" onerror="logoFail(this)"></li>
+    <li><img class="client-logo" src="logos/miller.svg" alt="Miller" loading="lazy" onerror="logoFail(this)"></li>
+  </ul>
 </section>
 
 <!-- ABOUT -->
@@ -875,13 +1169,18 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
         <div class="sec-label" style="margin-bottom:1.25rem;">Herramientas</div>
 
         <div class="tools-group">
-          <div class="tools-group-label">Paquete Adobe</div>
+          <div class="tools-group-label">Motion &amp; Video</div>
+          <div class="tools-chips">
+            <span class="tool-chip tool-chip-wide chip-adobe chip-highlight"><b>After Effects</b><small>Animación 2D y 3D, composición</small></span>
+            <span class="tool-chip tool-chip-wide chip-adobe"><b>Premiere Pro</b><small>Edición y postproducción</small></span>
+          </div>
+        </div>
+
+        <div class="tools-group">
+          <div class="tools-group-label">Diseño gráfico</div>
           <div class="tools-chips">
             <span class="tool-chip chip-adobe">Illustrator</span>
             <span class="tool-chip chip-adobe">Photoshop</span>
-            <span class="tool-chip chip-adobe chip-highlight">After Effects</span>
-            <span class="tool-chip chip-adobe">Premiere Pro</span>
-            <span class="tool-chip chip-adobe">Substance 3D Painter</span>
           </div>
         </div>
 
@@ -891,16 +1190,25 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
             <span class="tool-chip chip-3d">Blender</span>
             <span class="tool-chip chip-3d">3ds Max</span>
             <span class="tool-chip chip-3d">ZBrush</span>
-            <span class="tool-chip chip-3d">Marmoset Toolbag</span>
+            <span class="tool-chip chip-3d">Cinema 4D</span>
           </div>
         </div>
 
         <div class="tools-group">
-          <div class="tools-group-label">IA & Otros</div>
+          <div class="tools-group-label">IA</div>
           <div class="tools-chips">
+            <span class="tool-chip chip-ia">ComfyCloud</span>
             <span class="tool-chip chip-ia">KlingAI</span>
             <span class="tool-chip chip-ia">ElevenLabs</span>
-            <span class="tool-chip chip-ia">ComfyCloud</span>
+            <span class="tool-chip chip-ia">NanoBanana</span>
+            <span class="tool-chip chip-ia">Suno</span>
+            <span class="tool-chip chip-ia">Claude</span>
+          </div>
+        </div>
+
+        <div class="tools-group">
+          <div class="tools-group-label">Otras</div>
+          <div class="tools-chips">
             <span class="tool-chip chip-other">Unity</span>
             <span class="tool-chip chip-other">WordPress</span>
           </div>
@@ -916,9 +1224,9 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
     <h2 class="works-title">Trabajos <span>seleccionados.</span></h2>
     <div class="cat-tabs">
       <button class="cat-tab active" onclick="switchCat('motion',this)">🎬 Motion</button>
-      <button class="cat-tab" onclick="switchCat('video',this)">📹 Video</button>
       <button class="cat-tab" onclick="switchCat('3d',this)">🧊 3D</button>
       <button class="cat-tab" onclick="switchCat('ia',this)">✨ IA</button>
+      <button class="cat-tab" onclick="switchCat('video',this)">📹 Video</button>
     </div>
   </div>
 
@@ -932,81 +1240,83 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
       <span class="cat-panel-count">8 proyectos</span>
     </div>
     <div class="proj-grid">
-      <div class="proj-card" onclick="openModal('Motion Graphics','MCCAIN | Recap Cosquín Rock 2025','Creación de animaciones, transiciones y efectos visuales aplicados para potenciar el ritmo y el impacto del contenido.','bg-m','gv','TU_IMAGEN_1.jpg','https://www.youtube.com/embed/0f9o2gAJhY8')">
-        <div class="proj-thumb">
-          <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gv"></div>
-          <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_1.jpg" alt="Identidad Animada" onerror="this.style.display='none'">
-          <div class="proj-play-btn"></div>
-          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
-        </div>
-        <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">MCCAIN | Recap Cosquín Rock 2025</div></div>
-      </div>
-      <div class="proj-card" onclick="openModal('Motion Graphics','RED HAT | Loop Ansible','Loop visual diseñado para pantallas de stand, combinando motion graphics dinámicos y recursos visuales de alto impacto.','bg-4','gc','TU_IMAGEN_2.jpg','https://www.youtube.com/embed/yvUpOI96SRg')">
+		
+      <div class="proj-card" onclick="openModal('Motion Graphics','RED HAT | The power of choice','Video institucional para Red Hat que explora la flexibilidad de construir soluciones tecnológicas a medida. A través de animaciones y recursos visuales, comunica el valor de la libertad de elección y la innovación.','bg-4','gc','','https://www.youtube.com/embed/8LnObe1iBk0')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-4"></div><div class="proj-thumb-glow gc"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_2.jpg" alt="Explainer Fintech" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/8LnObe1iBk0/maxresdefault.jpg" alt="RED HAT | The power of choice" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/8LnObe1iBk0/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">RED HAT | The power of choice</div></div>
+      </div>
+      <div class="proj-card" onclick="openModal('Motion Graphics','RED HAT | Loop Ansible','Loop visual diseñado para pantallas de stand, combinando motion graphics dinámicos y recursos visuales de alto impacto.','bg-4','gc','','https://www.youtube.com/embed/yvUpOI96SRg')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-4"></div><div class="proj-thumb-glow gc"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/yvUpOI96SRg/maxresdefault.jpg" alt="RED HAT | Loop Ansible" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/yvUpOI96SRg/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">RED HAT | Loop Ansible</div></div>
       </div>
-      <div class="proj-card" onclick="openModal('Motion Graphics','WARSTEINER | La suerte esta servida','Integración de producto mediante recursos visuales dinámicos, adaptados al ritmo y mensaje de la pieza audiovisual.','bg5','gp','TU_IMAGEN_3.jpg','https://www.youtube.com/embed/Y2yFIGtYL-M')">
+      <div class="proj-card" onclick="openModal('Motion Graphics','WARSTEINER | La suerte esta servida','Integración de producto mediante recursos visuales dinámicos, adaptados al ritmo y mensaje de la pieza audiovisual.','bg5','gp','','https://www.youtube.com/embed/Y2yFIGtYL-M')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-5"></div><div class="proj-thumb-glow gp"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_3.jpg" alt="Bumpers YouTube" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/Y2yFIGtYL-M/maxresdefault.jpg" alt="WARSTEINER | La suerte esta servida" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/Y2yFIGtYL-M/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">WARSTEINER | La suerte esta servida</div></div>
       </div>
-		<div class="proj-card" onclick="openModal('Motion Graphics','SHELL | Recap Buenos Aires Trap','Creación de animaciones, transiciones y efectos visuales aplicados para potenciar el ritmo y el impacto del contenido.','bg-4','gc','TU_IMAGEN_2.jpg','https://www.youtube.com/embed/okSj9wBYLmY')">
-        <div class="proj-thumb">
-          <div class="proj-thumb-bg bg-4"></div><div class="proj-thumb-glow gc"></div>
-          <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_2.jpg" alt="Explainer Fintech" onerror="this.style.display='none'">
-          <div class="proj-play-btn"></div>
-          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
-        </div>
-        <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">SHELL | Recap Buenos Aires Trap</div></div>
-      </div>
-	  <div class="proj-card" onclick="openModal('Motion Graphics','RED HAT | RHUG','Reel de motion graphics desarrollado para Red Hat, utilizando una narrativa visual dinámica para comunicar de manera clara y atractiva los beneficios y funcionalidades de la plataforma.','bg-5','gp','TU_IMAGEN_3.jpg','https://www.youtube.com/embed/KqpDkaRafqI')">
+		
+	  <div class="proj-card" onclick="openModal('Motion Graphics','RED HAT | RHUG','Reel de motion graphics desarrollado para Red Hat, utilizando una narrativa visual dinámica para comunicar de manera clara y atractiva los beneficios y funcionalidades de la plataforma.','bg-5','gp','','https://www.youtube.com/embed/KqpDkaRafqI')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-5"></div><div class="proj-thumb-glow gp"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_3.jpg" alt="Bumpers YouTube" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/KqpDkaRafqI/maxresdefault.jpg" alt="RED HAT | RHUG" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/KqpDkaRafqI/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">RED HAT | RHUG</div></div>
       </div>
-		<div class="proj-card" onclick="openModal('Motion Graphics','TÍA ROSA | Producción de VideoCaso','Videocaso desarrollado para Tía Rosa sobre su campaña de Día de Muertos, utilizando motion graphics dinámicos y recursos visuales personalizados para comunicar la propuesta de la marca de manera atractiva y memorable.','bg-m','gv','TU_IMAGEN_1.jpg','https://www.youtube.com/embed/MnBU-tkj9g4')">
+		<div class="proj-card" onclick="openModal('Motion Graphics','TÍA ROSA | Producción de VideoCaso','Videocaso desarrollado para Tía Rosa sobre su campaña de Día de Muertos, utilizando motion graphics dinámicos y recursos visuales personalizados para comunicar la propuesta de la marca de manera atractiva y memorable.','bg-m','gv','','https://www.youtube.com/embed/MnBU-tkj9g4')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gv"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_1.jpg" alt="Identidad Animada" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/MnBU-tkj9g4/maxresdefault.jpg" alt="TÍA ROSA | Videocaso Día de Muertos" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/MnBU-tkj9g4/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
-        <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">TÍA ROSA | Producción de VideoCaso</div></div>
+        <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">TÍA ROSA | Videocaso Día de Muertos</div></div>
       </div>
-		<div class="proj-card" onclick="openModal('Motion Graphics','REY RABBIT | Centro de control','Contenido desarrollado para redes sociales, integrando efectos visuales y postproducción para potenciar el mensaje de marca a través de una narrativa visual creativa.','bg-4','gc','TU_IMAGEN_2.jpg','https://www.youtube.com/embed/W_1uU7flXZw')">
+		<div class="proj-card" onclick="openModal('Video / Audiovisual','BIMBO | Recap Verano Pinamar','Recap audiovisual para Bimbo que sintetiza las acciones de marca realizadas durante el verano, destacando el espíritu alegre, la interacción con el público y la experiencia generada en cada activación.','bg-v','gp','','https://www.youtube.com/embed/JLkkC-covLo')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-v"></div><div class="proj-thumb-glow gp"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/JLkkC-covLo/maxresdefault.jpg" alt="BIMBO | Recap Verano Pinamar" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/JLkkC-covLo/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">BIMBO | Recap Verano Pinamar</div></div>
+      </div>
+		<div class="proj-card" onclick="openModal('Motion Graphics','REY RABBIT | Centro de control','Contenido desarrollado para redes sociales, integrando efectos visuales y postproducción para potenciar el mensaje de marca a través de una narrativa visual creativa.','bg-4','gc','','https://www.youtube.com/embed/W_1uU7flXZw')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-4"></div><div class="proj-thumb-glow gc"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_2.jpg" alt="Explainer Fintech" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/W_1uU7flXZw/maxresdefault.jpg" alt="REY RABBIT | Centro de control" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/W_1uU7flXZw/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Motion Graphics</div><div class="proj-name">REY RABBIT | Centro de control</div></div>
       </div>
-	  <div class="proj-card" onclick="openModal('Motion Graphics','RED HAT | RHUG Inscripción','Reel de motion graphics desarrollado para Red Hat, utilizando una narrativa visual dinámica para comunicar de manera clara y atractiva el paso a paso para unirse a la plataforma.','bg-m','gv','TU_IMAGEN_1.jpg','https://www.youtube.com/embed/3l2X5ceYKqg')">
+	  <div class="proj-card" onclick="openModal('Motion Graphics','RED HAT | RHUG Inscripción paso a paso','Reel de motion graphics desarrollado para Red Hat, utilizando una narrativa visual dinámica para comunicar de manera clara y atractiva el paso a paso para unirse a la plataforma.','bg-m','gv','','https://www.youtube.com/embed/3l2X5ceYKqg')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gv"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_1.jpg" alt="Identidad Animada" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/3l2X5ceYKqg/maxresdefault.jpg" alt="RED HAT | RHUG Inscripción" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/3l2X5ceYKqg/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
@@ -1015,151 +1325,209 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
     </div>
   </div>
 
-  <!-- VIDEO -->
-  <div class="cat-panel" id="cat-video">
-    <div class="cat-panel-header">
-      <div class="cat-panel-title">
-        <span class="cat-panel-icon">📹</span>
-        <span class="cat-panel-name">Video / Audiovisual</span>
-      </div>
-      <span class="cat-panel-count">3 proyectos</span>
-    </div>
-    <div class="proj-grid">
-      <div class="proj-card" onclick="openModal('Video / Audiovisual','BIMBO | Recap Verano Pinamar','Recap audiovisual para Bimbo que sintetiza las acciones de marca realizadas durante el verano, destacando el espíritu alegre, la interacción con el público y la experiencia generada en cada activación.','bg-v','gp','TU_IMAGEN_4.jpg','https://www.youtube.com/embed/JLkkC-covLo')">
-        <div class="proj-thumb">
-          <div class="proj-thumb-bg bg-v"></div><div class="proj-thumb-glow gp"></div>
-          <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_4.jpg" alt="Corto Ciclos" onerror="this.style.display='none'">
-          <div class="proj-play-btn"></div>
-          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
-        </div>
-        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">BIMBO | Recap Verano Pinamar</div></div>
-      </div>
-      <div class="proj-card" onclick="openModal('Video / Audiovisual','REY RABBIT | Transición','Contenido desarrollado para redes sociales, integrando postproducción para potenciar el mensaje de marca a través de una narrativa visual creativa.','bg-m','gv','TU_IMAGEN_5.jpg','https://www.youtube.com/embed/QRvR5B4xRYc?')">
-        <div class="proj-thumb">
-          <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gv"></div>
-          <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_5.jpg" alt="Campaña Publicitaria" onerror="this.style.display='none'">
-          <div class="proj-play-btn"></div>
-          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
-        </div>
-        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">REY RABBIT | Transición</div></div>
-      </div>
-      <div class="proj-card" onclick="openModal('Video / Audiovisual', 'GROLSCH | Stopmotion Nueva lata','Una transición entre lo clásico y lo nuevo. Stop motion creado para Grolsch revelando la renovación de su nueva lata.','bg-ia','gia','TU_IMAGEN_6.jpg','https://www.youtube.com/embed/0SIozM3usqE')">
-        <div class="proj-thumb">
-          <div class="proj-thumb-bg bg-ia"></div><div class="proj-thumb-glow gia"></div>
-          <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_6.jpg" alt="Documental" onerror="this.style.display='none'">
-          <div class="proj-play-btn"></div>
-          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
-        </div>
-        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">GROLSCH | Stopmotion Nueva lata</div>
-		</div>
-      </div>
-    </div>
-  </div>
+  
 
-  <!-- 3D -->
+<!-- 3D -->
   <div class="cat-panel" id="cat-3d">
     <div class="cat-panel-header">
       <div class="cat-panel-title">
         <span class="cat-panel-icon">🧊</span>
         <span class="cat-panel-name">Modelado 3D</span>
       </div>
-      <span class="cat-panel-count">4 proyectos</span>
+      <span class="cat-panel-count">6 proyectos</span>
     </div>
     <div class="proj-grid">
-      <div class="proj-card" onclick="openModal('Modelado 3D','GROLSCH | Presentación Nuevas latas','Animación 3D realizada para Grolsch presentando los nuevos diseños de sus latas, combinando movimientos dinámicos y una estética moderna enfocada en resaltar los productos.','bg-3','gb','TU_IMAGEN_7.jpg','https://www.youtube.com/embed/ySl7eh0FszM')">
+      <div class="proj-card" onclick="openModal('Modelado 3D','GROLSCH | Presentación Nuevas latas','Animación 3D realizada para Grolsch presentando los nuevos diseños de sus latas, combinando movimientos dinámicos y una estética moderna enfocada en resaltar los productos.','bg-3','gb','','https://www.youtube.com/embed/ySl7eh0FszM')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-3"></div><div class="proj-thumb-glow gb"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_7.jpg" alt="Escultura Digital" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/ySl7eh0FszM/maxresdefault.jpg" alt="GROLSCH | Presentación Nuevas latas" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/ySl7eh0FszM/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Modelado 3D</div><div class="proj-name">GROLSCH | Presentación Nuevas latas</div></div>
       </div>
-      <div class="proj-card" onclick="openModal('Modelado 3D','MILLER | Nueva Lata LATAM','Loop 3D realizado para Miller presentando el lanzamiento de su nueva lata, combinando movimiento continuo, iluminación dinámica y una estética moderna enfocada en resaltar el producto.','bg-5','gv','TU_IMAGEN_8.jpg','https://www.youtube.com/embed/-67C0Wr_cZA')">
+      <div class="proj-card" onclick="openModal('Modelado 3D','MILLER | Nueva Lata LATAM','Loop 3D realizado para Miller presentando el lanzamiento de su nueva lata, combinando movimiento continuo, iluminación dinámica y una estética moderna enfocada en resaltar el producto.','bg-5','gv','','https://www.youtube.com/embed/-67C0Wr_cZA')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-5"></div><div class="proj-thumb-glow gv"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_8.jpg" alt="Render Joyería" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/-67C0Wr_cZA/maxresdefault.jpg" alt="MILLER | Nueva Lata LATAM" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/-67C0Wr_cZA/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Modelado 3D</div><div class="proj-name">MILLER | Nueva Lata LATAM</div></div>
       </div>
-      <div class="proj-card" onclick="openModal('Modelado 3D','RED HAT | Presentación 3D Productos','Composición y animación para la presentación de los productos de la marca.','bg-ia2','gia','TU_IMAGEN_9.jpg','https://www.youtube.com/embed/Ln2Kx3mMVLM')">
+      <div class="proj-card" onclick="openModal('Modelado 3D','RED HAT | Presentación 3D Productos','Composición y animación para la presentación de los productos de la marca.','bg-ia2','gia','','https://www.youtube.com/embed/Ln2Kx3mMVLM')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-ia2"></div><div class="proj-thumb-glow gia"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_9.jpg" alt="Mundo Virtual" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/Ln2Kx3mMVLM/maxresdefault.jpg" alt="RED HAT | Presentación 3D Productos" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/Ln2Kx3mMVLM/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Modelado 3D</div><div class="proj-name">RED HAT | Presentación 3D Productos</div></div>
       </div>
-	  <div class="proj-card" onclick="openModal('Modelado 3D','WARSTEINER | Presentación Lata Edición Especial Parookaville','Animación 3D realizada para Warsteiner presentando la edición especial de la lata por el festival Parookaville.','bg-3','gb','TU_IMAGEN_7.jpg','https://www.youtube.com/embed/bWbrWJOSf8c?')">
+	  <div class="proj-card" onclick="openModal('Modelado 3D','WARSTEINER | Presentación Lata Edición Especial Parookaville','Animación 3D realizada para Warsteiner presentando la edición especial de la lata por el festival Parookaville.','bg-3','gb','','https://www.youtube.com/embed/bWbrWJOSf8c?')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-3"></div><div class="proj-thumb-glow gb"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_7.jpg" alt="Escultura Digital" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/bWbrWJOSf8c/maxresdefault.jpg" alt="WARSTEINER | Presentación Lata Edición Especial Parookaville" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/bWbrWJOSf8c/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">Modelado 3D</div><div class="proj-name">WARSTEINER | Presentación Lata Edición Especial Parookaville</div></div>
       </div>
+		 <div class="proj-card" onclick="openModal('Modelado 3D','MARFRIG | Presentación nuevo pack Paty Clásico','Animación 3D loopeable realizada en Blender para Paty presentando su nuevo pack.','bg-3','gb','','https://www.youtube.com/embed/vKobLOam2c4?')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-3"></div><div class="proj-thumb-glow gb"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/vKobLOam2c4/maxresdefault.jpg" alt="MARFRIG | Presentación nuevo pack Paty Clásico" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/vKobLOam2c4/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Modelado 3D</div><div class="proj-name">MARFRIG | Presentación nuevo pack Paty Clásico</div></div>
+      </div>
+		<div class="proj-card" onclick="openModal('Modelado 3D','MILLER | Presentación Lata Edición Especial','Animación 3D realizada para Miller presentando la edición especial de la lata.','bg-3','gb','','https://www.youtube.com/embed/gElvjfptx7w?')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-3"></div><div class="proj-thumb-glow gb"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/gElvjfptx7w/maxresdefault.jpg" alt="MILLER | Presentación Lata Edición Especial" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/gElvjfptx7w/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Modelado 3D</div><div class="proj-name">MILLER | Presentación Lata Edición Especial</div></div>
+      </div>
     </div>
   </div>
 
-  <!-- IA -->
+  
+
+<!-- IA -->
   <div class="cat-panel" id="cat-ia">
     <div class="cat-panel-header">
       <div class="cat-panel-title">
         <span class="cat-panel-icon">✨</span>
         <span class="cat-panel-name">Contenido con IA</span>
       </div>
-      <span class="cat-panel-count">3 proyectos</span>
+      <span class="cat-panel-count">4 proyectos</span>
     </div>
     <div class="proj-grid">
-      <div class="proj-card" onclick="openModal('Contenido con IA','MILLER | Sorteo Viaje a Estambul','Proyecto híbrido que integra IA, animación 3D y postproducción. La ilustración de la lata fue animada mediante IA, complementada con animación de producto en Blender y motion design en After Effects para lograr una pieza visual impactante.','bg-ia','gia','TU_IMAGEN_10.jpg','https://www.youtube.com/embed/0Rnp9mNSW-k')">
+      <div class="proj-card" onclick="openModal('Contenido con IA','MILLER | Sorteo Viaje a Estambul','Proyecto híbrido que integra IA, animación 3D y postproducción. La ilustración de la lata fue animada mediante IA, complementada con animación de producto en Blender y motion design en After Effects para lograr una pieza visual impactante.','bg-ia','gia','','https://www.youtube.com/embed/0Rnp9mNSW-k')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-ia"></div><div class="proj-thumb-glow gia"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_10.jpg" alt="Campaña Moda" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/0Rnp9mNSW-k/maxresdefault.jpg" alt="MILLER | Sorteo Viaje a Estambul" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/0Rnp9mNSW-k/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">IA · Imagen</div><div class="proj-name">MILLER | Sorteo Viaje a Estambul</div></div>
       </div>
-      <div class="proj-card" onclick="openModal('Contenido con IA','MILLER | Momentos del Verano','Contenido para redes creado con Kling AI, utilizando tomas generadas por IA para representar diversas situaciones veraniegas de forma atractiva y dinámica.','bg-ia2','gv','TU_IMAGEN_11.jpg','https://www.youtube.com/embed/_M8eJqJFy4Y')">
+      <div class="proj-card" onclick="openModal('Contenido con IA','MILLER | Momentos del Verano','Contenido para redes creado con Kling AI, utilizando tomas generadas por IA para representar diversas situaciones veraniegas de forma atractiva y dinámica.','bg-ia2','gv','','https://www.youtube.com/embed/_M8eJqJFy4Y')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-ia2"></div><div class="proj-thumb-glow gv"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_11.jpg" alt="Video Sintético" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/_M8eJqJFy4Y/maxresdefault.jpg" alt="MILLER | Momentos del Verano" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/_M8eJqJFy4Y/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">IA · Video</div><div class="proj-name">MILLER | Momentos del Verano</div></div>
       </div>
-      <div class="proj-card" onclick="openModal('Contenido con IA','WARSTEINER | Mini Keg En todos lados','Contenido para redes creado con imagenes generadas en NanoBanana y tomas de Kling AI.','bg-m','gp','TU_IMAGEN_12.jpg','https://www.youtube.com/embed/1vGcEKgr29M')">
+      <div class="proj-card" onclick="openModal('Contenido con IA','WARSTEINER | Mini Keg En todos lados','Contenido para redes creado con imagenes generadas en NanoBanana y tomas de Kling AI.','bg-m','gp','','https://www.youtube.com/embed/1vGcEKgr29M')">
         <div class="proj-thumb">
           <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gp"></div>
           <span class="proj-thumb-emoji"></span>
-          <img src="TU_IMAGEN_12.jpg" alt="Motion IA" onerror="this.style.display='none'">
+          <img src="https://i.ytimg.com/vi/1vGcEKgr29M/maxresdefault.jpg" alt="WARSTEINER | Mini Keg En todos lados" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/1vGcEKgr29M/hqdefault.jpg'}else{this.style.display='none'}">
           <div class="proj-play-btn"></div>
           <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
         </div>
         <div class="proj-body"><div class="proj-tag">IA · Motion</div><div class="proj-name">WARSTEINER | Mini Keg En todos lados</div></div>
       </div>
+		<div class="proj-card" onclick="openModal('Contenido con IA','MARFRIG | Presentación Paty cancha','Contenido para streaming. Proyecto realizado en After Effects e ilustraciones animadas con Mini Max en Comfy Cloud','bg-m','gp','','https://www.youtube.com/embed/vj8qAXoGBUI')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gp"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/vj8qAXoGBUI/maxresdefault.jpg" alt="MARFRIG | Presentación Paty cancha" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/vj8qAXoGBUI/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">IA · Motion</div><div class="proj-name">MARFRIG | Presentación Paty cancha</div></div>
+      </div>
     </div>
   </div>
+
+<!-- VIDEO -->
+  <div class="cat-panel" id="cat-video">
+    <div class="cat-panel-header">
+      <div class="cat-panel-title">
+        <span class="cat-panel-icon">📹</span>
+        <span class="cat-panel-name">Video / Audiovisual</span>
+      </div>
+      <span class="cat-panel-count">5 proyectos</span>
+    </div>
+    <div class="proj-grid">
+		<div class="proj-card" onclick="openModal('Video / Audiovisual', 'GROLSCH | Stopmotion Nueva lata','Una transición entre lo clásico y lo nuevo. Stop motion creado para Grolsch revelando la renovación de su nueva lata.','bg-ia','gia','','https://www.youtube.com/embed/0SIozM3usqE')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-ia"></div><div class="proj-thumb-glow gia"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/0SIozM3usqE/maxresdefault.jpg" alt="GROLSCH | Stopmotion Nueva lata" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/0SIozM3usqE/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">GROLSCH | Stopmotion Nueva lata</div>
+		</div>
+      </div>
+      
+		<div class="proj-card" onclick="openModal('Video / Audiovisual', 'BLUEMOON | En Casa Futuro','Contenido desarrollado para redes sociales. Edición y postproducción realizada en Adobe Premiere.','bg-ia','gia','','https://www.youtube.com/embed/krQtL9Ie8II')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-ia"></div><div class="proj-thumb-glow gia"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/krQtL9Ie8II/maxresdefault.jpg" alt="BLUEMOON | En Casa Futuro" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/krQtL9Ie8II/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">BLUEMOON | En Casa Futuro</div>
+		</div>
+      </div>
+      <div class="proj-card" onclick="openModal('Video / Audiovisual','REY RABBIT | Transición','Contenido desarrollado para redes sociales, integrando postproducción para potenciar el mensaje de marca a través de una narrativa visual creativa.','bg-m','gv','','https://www.youtube.com/embed/QRvR5B4xRYc?')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gv"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/QRvR5B4xRYc/maxresdefault.jpg" alt="REY RABBIT | Transición" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/QRvR5B4xRYc/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">REY RABBIT | Transición</div></div>
+      </div>
+      <div class="proj-card" onclick="openModal('Motion Graphics','SHELL | Recap Buenos Aires Trap','Creación de animaciones, transiciones y efectos visuales aplicados para potenciar el ritmo y el impacto del contenido.','bg-4','gc','','https://www.youtube.com/embed/okSj9wBYLmY')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-4"></div><div class="proj-thumb-glow gc"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/okSj9wBYLmY/maxresdefault.jpg" alt="SHELL | Recap Buenos Aires Trap" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/okSj9wBYLmY/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">SHELL | Recap Buenos Aires Trap</div></div>
+      </div>
+		<div class="proj-card" onclick="openModal('Video / Audiovisual','WARSTEINER Recap La Nube','Contenido desarrollado para redes sociales. Edición y postproducción realizada en Adobe Premiere.','bg-m','gv','','https://www.youtube.com/embed/EAOSctAt-qA?')">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg bg-m"></div><div class="proj-thumb-glow gv"></div>
+          <span class="proj-thumb-emoji"></span>
+          <img src="https://i.ytimg.com/vi/EAOSctAt-qA/maxresdefault.jpg" alt="WARSTEINER Recap La Nube" loading="lazy" decoding="async" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/EAOSctAt-qA/hqdefault.jpg'}else{this.style.display='none'}">
+          <div class="proj-play-btn"></div>
+          <div class="proj-hover-overlay"><span class="proj-hover-cta">▶ Ver proyecto</span></div>
+        </div>
+        <div class="proj-body"><div class="proj-tag">Video</div><div class="proj-name">WARSTEINER Recap La Nube</div></div>
+      </div>
+    </div>
+  </div>
+
+  
 </section>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
     <div class="modal-media" id="modal-media">
       <!-- Poster (imagen de portada) -->
       <div class="modal-poster" id="modal-poster">
@@ -1173,7 +1541,7 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
       </div>
       <!-- Video embed -->
       <div class="modal-video" id="modal-video">
-        <iframe id="modal-iframe" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
+        <iframe id="modal-iframe" title="Video del proyecto" src="" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>
       </div>
     </div>
     <div class="modal-body">
@@ -1183,10 +1551,14 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
       <div class="modal-video-info">
         <div class="modal-video-dot"></div>
         <span id="modal-video-src">Hacé clic en ▶ para reproducir el video del proyecto</span>
+        <a id="modal-yt-link" class="modal-yt-link" href="#" target="_blank" rel="noopener" style="display:none">Abrir en YouTube ↗</a>
       </div>
     </div>
   </div>
 </div>
+
+<!-- BANDA -->
+<div class="band" aria-hidden="true"><div class="band-track" id="bandTrack"></div></div>
 
 <!-- IA SECTION -->
 <section id="ia" style="background:var(--dark);padding:8rem 3rem;position:relative;overflow:hidden;border-top:1px solid rgba(192,132,252,.07);">
@@ -1203,7 +1575,7 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
         </p>
         <p style="font-size:.9rem;color:var(--muted);line-height:2;margin-bottom:2rem;">
         Uso ComfyCloud, KlingAI, NanoBanana, Chat GPT y&nbsp; &nbsp; otras herramientas para producir contenido visual que combina lo humano con lo generativo.</p>
-        <a href="#trabajos" class="btn-grad" style="display:inline-flex;">Ver proyectos IA →</a>
+        <a href="#trabajos" class="btn-grad" style="display:inline-flex;" onclick="goCat('ia')">Ver proyectos IA →</a>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
         <div style="background:var(--card);border:1px solid rgba(232,121,160,.12);border-radius:20px;padding:1.75rem;transition:transform .3s,border-color .3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(232,121,160,.35)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(232,121,160,.12)'">
@@ -1271,14 +1643,13 @@ footer{border-top:1px solid rgba(192,132,252,.06);padding:1.75rem 3rem;
   <a href="mailto:eugenialopezponzo@gmail.com" class="contact-email">eugenialopezponzo@gmail.com</a>
   <a href="mailto:eugenialopezponzo@gmail.com" class="btn-grad" style="margin-bottom:3rem;">Escribime →</a>
   <ul class="socials">
-    <li><a href="#">Instagram</a></li>
-    <li><a href="https://www.behance.net/eugenialpezp">Behance</a></li>
+    <!-- <li><a href="https://www.instagram.com/TU_USUARIO">Instagram</a></li> -->
     <li><a href="https://www.linkedin.com/in/mar%C3%ADa-eugenia-l%C3%B3pez-ponzo-517841201/">LinkedIn</a></li>
   </ul>
 </section>
 
 <footer>
-  <span class="fc">© 2026 Eugenia López. Todos los derechos reservados.</span>
+  <span class="fc">© 2026 Eugenia López Ponzo. Todos los derechos reservados.</span>
   <span class="fb">Ciudad Autónoma de Buenos Aires · ARG</span>
 </footer>
 
@@ -1302,10 +1673,18 @@ function switchCat(cat, btn) {
 
 // Modal state
 let currentVideoUrl = '';
+let lastCard = null;
+
+// Convierte cualquier link de YouTube (youtu.be, shorts, watch?v=) al formato embed
+function normYT(u){
+  if(!u || u.indexOf('/embed/')>-1) return u;
+  const m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:shorts\/|live\/|watch\?(?:[^#]*&)?v=))([\w-]{6,})/);
+  return m ? 'https://www.youtube.com/embed/'+m[1] : u;
+}
 
 function openModal(cat, title, desc, bgClass, glowClass, imgUrl, videoUrl) {
   // Reset video state
-  currentVideoUrl = videoUrl || '';
+  currentVideoUrl = normYT(videoUrl || '');
   const media = document.getElementById('modal-media');
   media.classList.remove('playing');
   document.getElementById('modal-iframe').src = '';
@@ -1316,8 +1695,15 @@ function openModal(cat, title, desc, bgClass, glowClass, imgUrl, videoUrl) {
   document.getElementById('modal-title').textContent = title;
   document.getElementById('modal-desc').textContent = desc;
 
-  // Set poster image
+  // Set poster image (si no se pasa una, usa la miniatura de la tarjeta clickeada)
   const posterImg = document.getElementById('modal-poster-img');
+  const ev = window.event;
+  const srcCard = ev && ev.currentTarget && ev.currentTarget.querySelector ? ev.currentTarget : null;
+  lastCard = srcCard;
+  if (!imgUrl && srcCard) {
+    const ci = srcCard.querySelector('.proj-thumb img');
+    if (ci && ci.style.display !== 'none') imgUrl = ci.currentSrc || ci.src;
+  }
   if (imgUrl && !imgUrl.startsWith('TU_IMAGEN')) {
     posterImg.src = imgUrl;
     posterImg.style.display = 'block';
@@ -1330,6 +1716,9 @@ function openModal(cat, title, desc, bgClass, glowClass, imgUrl, videoUrl) {
   document.getElementById('modal-fallback-glow').className = 'modal-poster-fallback-glow ' + glowClass;
 
   // Video source label
+  const ytLink = document.getElementById('modal-yt-link');
+  const ytId = (currentVideoUrl.match(/embed\/([\w-]+)/) || [])[1];
+  if (ytLink) { ytLink.style.display = ytId ? 'inline-flex' : 'none'; if (ytId) ytLink.href = 'https://www.youtube.com/watch?v=' + ytId; }
   const srcEl = document.getElementById('modal-video-src');
   if (currentVideoUrl) {
     const isVimeo = currentVideoUrl.includes('vimeo');
@@ -1346,6 +1735,7 @@ function openModal(cat, title, desc, bgClass, glowClass, imgUrl, videoUrl) {
   // Open overlay
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  const cb = document.querySelector('.modal-close'); if (cb) cb.focus();
 }
 
 function playVideo(e) {
@@ -1354,7 +1744,10 @@ function playVideo(e) {
   const media = document.getElementById('modal-media');
   const videoDiv = document.getElementById('modal-video');
   const iframe = document.getElementById('modal-iframe');
-  iframe.src = currentVideoUrl;
+  // autoplay porque el usuario ya hizo clic en ▶
+  let src = currentVideoUrl;
+  src += (src.includes('?') ? (src.endsWith('?') ? '' : '&') : '?') + 'autoplay=1&rel=0';
+  iframe.src = src;
   videoDiv.style.display = 'block';
   media.classList.add('playing');
 }
@@ -1362,6 +1755,7 @@ function playVideo(e) {
 function closeModal() {
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
+  if (lastCard && lastCard.focus) lastCard.focus();
   // Stop video
   setTimeout(() => {
     document.getElementById('modal-iframe').src = '';
@@ -1375,6 +1769,27 @@ function closeModalOutside(e) {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+// Logos de marcas: prueba .svg, luego .png y si no existe muestra el nombre
+function logoFail(img){
+  if(!img.dataset.t){ img.dataset.t=1; img.src=img.src.replace(/\.svg$/,'.png'); return; }
+  const s=document.createElement('span'); s.className='client-name'; s.textContent=img.alt; img.replaceWith(s);
+}
+
+// Tarjetas de la portada: abren la pestaña de esa categoría
+function goCat(cat){
+  const btn = document.querySelector("[onclick*=\"switchCat('" + cat + "'\"]");
+  if (btn) switchCat(cat, btn);
+}
+
+// Tarjetas de proyecto accesibles con teclado
+document.querySelectorAll('.proj-card').forEach(c => {
+  c.setAttribute('tabindex', '0');
+  c.setAttribute('role', 'button');
+  c.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); }
+  });
+});
+
 // Skills animation
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1386,6 +1801,193 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: .3 });
 const sg = document.getElementById('skillsGrid');
 if (sg) obs.observe(sg);
+</script>
+<script>
+/* ===== Movimiento ===== */
+(function(){
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const FINE = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const $  = (s,r)=> (r||document).querySelector(s);
+  const $$ = (s,r)=> [...(r||document).querySelectorAll(s)];
+
+  /* barra de progreso de scroll */
+  const sp = $('#scrollProgress');
+  function onScroll(){ const h=document.documentElement.scrollHeight-innerHeight; if(sp) sp.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'; }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  if (RM) return;
+
+  /* números que cuentan hasta su valor */
+  $$('.pstat-num').forEach(el=>{
+    const m=el.textContent.trim().match(/^(\D*)(\d+)(\D*)$/); if(!m) return;
+    const pre=m[1], n=+m[2], suf=m[3]; el.textContent=pre+'0'+suf;
+    setTimeout(()=>{ const t0=performance.now();
+      (function step(t){ const k=Math.min(1,(t-t0)/1300); el.textContent=pre+Math.round(n*(1-Math.pow(1-k,3)))+suf; if(k<1) requestAnimationFrame(step); })(t0);
+    },900);
+  });
+
+  /* aparición escalonada al hacer scroll */
+  if ('IntersectionObserver' in window){
+    const sel='.sec-label,.about-heading,.about-text,.timeline,.tools-group,.works-header,.cat-panel-header,.proj-card,.clients-label,.svc-heading,.svc-desc,.svc-item,.c-label,.contact-big,.contact-email,.socials,#contacto .btn-grad,#ia h2,#ia p,#ia a.btn-grad,#ia div[onmouseover],#ia span[style*="border-radius:2rem"]';
+    const counts=new Map();
+    const io=new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target; el.classList.add('in'); io.unobserve(el);
+      setTimeout(()=>{ el.classList.remove('reveal','in'); el.style.removeProperty('--d'); },1200);
+    }),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    $$(sel).forEach(el=>{
+      const p=el.parentElement, i=counts.get(p)||0; counts.set(p,i+1);
+      el.style.setProperty('--d',Math.min(i,7)*70+'ms'); el.classList.add('reveal'); io.observe(el);
+    });
+  }
+  $$('.proj-grid').forEach(g=>[...g.children].forEach((c,i)=>c.style.setProperty('--k',i)));
+
+  /* tira de marcas: se duplica para el loop infinito */
+  const cl=$('.clients-list');
+  if(cl){ const base=[...cl.children]; for(let k=0;k<3;k++) base.forEach(li=>{ const c=li.cloneNode(true); c.setAttribute('aria-hidden','true'); cl.appendChild(c); }); }
+
+  /* banda de texto gigante (reacciona al scroll) */
+  const bt=$('#bandTrack'); let bx=0, bw=0, dir=-1;
+  if(bt){
+    const words=['Motion','3D','IA','Video'];
+    const seg=words.map((w,i)=>'<span class="'+(i%2?'o':'f')+'">'+w+'</span><i>✦</i>').join('');
+    bt.innerHTML=seg.repeat(2)+seg.repeat(2);
+    const measure=()=>{ bw=bt.scrollWidth/2; };
+    measure(); addEventListener('resize',measure);
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(measure);
+  }
+
+  /* línea de edición: cabezal y timecode en vivo */
+  const bar=$('.nle-inline'); let nle=null, nleFrame=-1;
+  if(bar){
+    const tracks=$('.nle-tracks',bar), head=$('.nle-playhead',bar), tc=$('.nle-timecode',bar);
+    const clips=$$('.nle-clip',bar).map(c=>({el:c,l:parseFloat(c.style.left)||0,w:parseFloat(c.style.width)||0,on:false}));
+    nle={head,tc,clips,off:0,wd:0}; head.style.left='0';
+    const measure=()=>{ const a=bar.getBoundingClientRect(), b=tracks.getBoundingClientRect(); nle.off=b.left-a.left; nle.wd=b.width; };
+    measure(); addEventListener('resize',measure); setTimeout(measure,1500);
+  }
+
+  /* efectos solo para mouse */
+  let mx=innerWidth/2,my=innerHeight/2,gx=mx,gy=my,tx=0,ty=0,px=0,py=0;
+  const glow=$('#cursorGlow'), blobs=[[$('.pb1'),-45],[$('.pb2'),35],[$('.pb3'),-22]], pc=$('.port-cards');
+  if(FINE){
+    addEventListener('pointermove',e=>{
+      if(e.pointerType!=='mouse') return;
+      mx=e.clientX; my=e.clientY; tx=(mx/innerWidth-.5)*2; ty=(my/innerHeight-.5)*2;
+      if(glow) glow.classList.add('on');
+    },{passive:true});
+    document.addEventListener('pointerover',e=>{
+      const t=e.target.closest&&e.target.closest('a,button,.proj-card,.cat-tab,.svc-item');
+      if(glow) glow.classList.toggle('big',!!t);
+    });
+    /* inclinación 3D + brillo en las tarjetas de proyecto */
+    $$('.proj-card').forEach(c=>{
+      c.addEventListener('pointermove',e=>{
+        if(e.pointerType!=='mouse') return;
+        const r=c.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+        c.style.setProperty('--mx',(x*100)+'%'); c.style.setProperty('--my',(y*100)+'%');
+        c.style.transform='perspective(900px) rotateX('+((.5-y)*9)+'deg) rotateY('+((x-.5)*11)+'deg) translateY(-6px)';
+      });
+      c.addEventListener('pointerleave',()=>{ c.style.transform=''; });
+    });
+    /* botones magnéticos */
+    $$('.btn-grad,.btn-outline,.nav-cta').forEach(el=>{
+      el.addEventListener('pointermove',e=>{
+        const r=el.getBoundingClientRect();
+        el.style.translate=((e.clientX-r.left-r.width/2)*.22)+'px '+((e.clientY-r.top-r.height/2)*.3)+'px';
+      });
+      el.addEventListener('pointerleave',()=>{ el.style.translate=''; });
+    });
+  }
+
+  /* chispas al hacer clic / tocar */
+  const cols=['#C084FC','#E879A0','#F97060','#FBAB7E','#9B6EC8'];
+  addEventListener('pointerdown',e=>{
+    for(let i=0;i<9;i++){
+      const s=document.createElement('i'), a=Math.random()*Math.PI*2, d=34+Math.random()*52;
+      s.className='spark';
+      s.style.cssText='left:'+e.clientX+'px;top:'+e.clientY+'px;--dx:'+(Math.cos(a)*d)+'px;--dy:'+(Math.sin(a)*d)+'px;background:'+cols[i%cols.length]+';';
+      document.body.appendChild(s); s.addEventListener('animationend',()=>s.remove());
+    }
+  },{passive:true});
+
+  /* un solo bucle de animación */
+  let lastY=scrollY;
+  function frame(now){
+    const dy=scrollY-lastY; lastY=scrollY;
+    if(FINE){
+      gx+=(mx-gx)*.14; gy+=(my-gy)*.14;
+      if(glow) glow.style.transform='translate3d('+gx+'px,'+gy+'px,0)';
+      px+=(tx-px)*.06; py+=(ty-py)*.06;
+      blobs.forEach(b=>{ if(b[0]) b[0].style.translate=(px*b[1])+'px '+(py*b[1])+'px'; });
+      if(pc) pc.style.translate=(px*-16)+'px '+(py*-12)+'px';
+    }
+    if(bt&&bw){
+      if(Math.abs(dy)>1) dir=dy>0?-1:1;
+      bx+=dir*(0.8+Math.min(Math.abs(dy),50)*.35);
+      if(bx<=-bw) bx+=bw; if(bx>0) bx-=bw;
+      bt.style.transform='translate3d('+bx+'px,0,0)';
+    }
+    if(nle){
+      const t=(now/1000)%12, p=t/12;
+      nle.head.style.transform='translateX('+(nle.off+p*nle.wd)+'px)';
+      const f=Math.floor(t*24);
+      if(f!==nleFrame){
+        nleFrame=f;
+        nle.tc.textContent='00:00:'+String(Math.floor(t)).padStart(2,'0')+':'+String(f%24).padStart(2,'0');
+        nle.clips.forEach(c=>{ const on=p*100>=c.l&&p*100<=c.l+c.w; if(on!==c.on){ c.on=on; c.el.classList.toggle('live',on); } });
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+/* ===== Portada: título letra por letra + teclado ===== */
+(function(){
+  const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* de vez en cuando una letra se "enciende" sola */
+  if(!RM){
+    const L=$$('.l2 .ci');
+    setInterval(()=>{ if(document.hidden||!L.length) return;
+      const el=L[Math.floor(Math.random()*L.length)]; el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1000);
+    },1700);
+  }
+
+  /* el título se mueve apenas con el mouse y al scrollear */
+  const title=$('.cv-title'); let pend=false,mxn=0,myn=0;
+  function upd(){ pend=false; title.style.setProperty('--tx',mxn.toFixed(3)); title.style.setProperty('--ty',myn.toFixed(3));
+    title.style.setProperty('--sy',(Math.min(scrollY,700)*.18).toFixed(1)+'px'); }
+  const req=()=>{ if(!pend){ pend=true; requestAnimationFrame(upd); } };
+  if(!RM){
+    if(matchMedia('(hover:hover) and (pointer:fine)').matches)
+      addEventListener('pointermove',e=>{ if(e.pointerType!=='mouse') return; mxn=e.clientX/innerWidth*2-1; myn=e.clientY/innerHeight*2-1; req(); },{passive:true});
+    addEventListener('scroll',req,{passive:true});
+  }
+
+  /* teclado: atajos + tecla iluminada según la sección */
+  const keys=$$('.key'), map={i:'portada',m:'sobre',t:'trabajos',a:'ia',s:'servicios',c:'contacto'};
+  const press=k=>{ k.classList.add('pressed'); setTimeout(()=>k.classList.remove('pressed'),180); };
+  addEventListener('keydown',e=>{
+    if(e.repeat||e.ctrlKey||e.metaKey||e.altKey) return;
+    const tag=((document.activeElement||{}).tagName||''); if(/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+    const m=$('#modal'); if(m&&m.classList.contains('open')) return;
+    const key=(e.key||'').toLowerCase(), id=map[key]; if(!id) return;
+    const k=keys.find(x=>x.dataset.key===key); if(k) press(k);
+    const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:RM?'auto':'smooth'});
+  });
+  const ids=['portada','sobre','trabajos','ia','servicios','contacto'];
+  function spy(){
+    let cur=ids[0]; const y=innerHeight*.35;
+    ids.forEach(id=>{ const el=document.getElementById(id); if(el&&el.getBoundingClientRect().top<=y) cur=id; });
+    if(innerHeight+scrollY>=document.documentElement.scrollHeight-4) cur='contacto';
+    keys.forEach(k=>k.classList.toggle('on',k.getAttribute('href')==='#'+cur));
+  }
+  addEventListener('scroll',spy,{passive:true}); spy();
+})();
 </script>
 </body>
 </html>
